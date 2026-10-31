@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visenlo Setup Guide: Models, Installation &amp; Troubleshooting</title>
+    <meta name="description" content="Install Visenlo face-swap models on Windows, Linux, or macOS. Follow required-weight setup, Pixel Boost advice, and fixes for common local processing issues." />
+    <meta name="author" content="Visenlo" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#10130f" />
+    <meta name="google-site-verification" content="0732bed172a36bf8" />
+    <link rel="canonical" href="https://reactor-web-seven.vercel.app/model-guide.html" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Visenlo" />
+    <meta property="og:title" content="Visenlo Setup Guide: Models, Installation &amp; Troubleshooting" />
+    <meta property="og:description" content="Install Visenlo face-swap models on Windows, Linux, or macOS. Follow required-weight setup, Pixel Boost advice, and fixes for common local processing issues." />
+    <meta property="og:url" content="https://reactor-web-seven.vercel.app/model-guide.html" />
+    <meta property="og:image" content="https://reactor-web-seven.vercel.app/assets/social-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Visenlo local studio with a face-landmark workflow illustration" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Visenlo Setup Guide: Models, Installation &amp; Troubleshooting" />
+    <meta name="twitter:description" content="Install Visenlo face-swap models on Windows, Linux, or macOS. Follow required-weight setup, Pixel Boost advice, and fixes for common local processing issues." />
+    <meta name="twitter:image" content="https://reactor-web-seven.vercel.app/assets/social-card.png" />
+    <meta name="twitter:image:alt" content="Visenlo local face-swap studio workflow illustration" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/space-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="site.js" defer></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://reactor-web-seven.vercel.app/#project",
+      "name": "Visenlo",
+      "url": "https://reactor-web-seven.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://reactor-web-seven.vercel.app/assets/mark.svg"
+      },
+      "sameAs": [
+        "https://github.com/Mevinb/Visenlo"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://reactor-web-seven.vercel.app/#website",
+      "url": "https://reactor-web-seven.vercel.app/",
+      "name": "Visenlo",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://reactor-web-seven.vercel.app/#project"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://reactor-web-seven.vercel.app/#social-image",
+      "url": "https://reactor-web-seven.vercel.app/assets/social-card.png",
+      "width": 1200,
+      "height": 630,
+      "caption": "Visenlo local face-swap studio workflow illustration"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://reactor-web-seven.vercel.app/model-guide.html#webpage",
+      "url": "https://reactor-web-seven.vercel.app/model-guide.html",
+      "name": "Visenlo Setup Guide: Models, Installation & Troubleshooting",
+      "description": "Install Visenlo face-swap models on Windows, Linux, or macOS. Follow required-weight setup, Pixel Boost advice, and fixes for common local processing issues.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://reactor-web-seven.vercel.app/#website"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://reactor-web-seven.vercel.app/#social-image"
+      },
+      "mainEntity": {
+        "@id": "https://reactor-web-seven.vercel.app/model-guide.html#guide"
+      },
+      "breadcrumb": {
+        "@id": "https://reactor-web-seven.vercel.app/model-guide.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://reactor-web-seven.vercel.app/model-guide.html#guide",
+      "headline": "Visenlo model setup and troubleshooting guide",
+      "description": "Install Visenlo face-swap models on Windows, Linux, or macOS. Follow required-weight setup, Pixel Boost advice, and fixes for common local processing issues.",
+      "url": "https://reactor-web-seven.vercel.app/model-guide.html",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@id": "https://reactor-web-seven.vercel.app/model-guide.html#webpage"
+      },
+      "author": {
+        "@id": "https://reactor-web-seven.vercel.app/#project"
+      },
+      "publisher": {
+        "@id": "https://reactor-web-seven.vercel.app/#project"
+      },
+      "about": {
+        "@id": "https://reactor-web-seven.vercel.app/#software"
+      },
+      "image": "https://reactor-web-seven.vercel.app/assets/social-card.png",
+      "dateModified": "2026-10-31"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://reactor-web-seven.vercel.app/model-guide.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Visenlo",
+          "item": "https://reactor-web-seven.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Model setup guide",
+          "item": "https://reactor-web-seven.vercel.app/model-guide.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+  </head>
+  <body id="top" class="guide-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="index.html" aria-label="Visenlo home"><img src="assets/mark.svg" width="30" height="30" alt="" />visenlo</a>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span aria-hidden="true">+</span></button>
+        <nav id="site-nav" aria-label="Main navigation">
+          <a href="index.html#how">The workflow</a><a href="index.html#features">Features</a><a href="index.html#models">Models</a><a href="index.html#faq">Questions</a>
+          <a class="nav-source" href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="nav-download" href="index.html#install">Get Visenlo <span aria-hidden="true">↓</span></a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="shell guide-main">
+      <nav class="guide-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Model setup</li></ol></nav>
+      <p class="eyebrow">THE PRACTICAL GUIDE / YOUR FIRST SWAP</p>
+      <h1>From first launch<br><em>to your first image.</em></h1>
+      <p class="guide-lede">Visenlo pairs a reference identity with a target scene, processes the swap on your computer, and saves the result locally. Here is the complete path through setup and your first swap.</p>
+      <div class="guide-note"><span aria-hidden="true">↳</span><p><strong>Start in the right folder.</strong> Extract <code>Visenlo.zip</code>, then open the inner <code>Visenlo/</code> folder containing <code>app.py</code> and <code>run.sh</code> or <code>run.bat</code>. Start <code>./run.sh</code> on Linux/macOS, or double-click <code>run.bat</code> on Windows. Keep its terminal open while using the local studio.</p></div>
+      <section class="guide-section" aria-labelledby="setup-title"><p class="eyebrow">01 / FIRST-RUN MODEL SETUP</p><h2 id="setup-title">Install from inside the studio.</h2><p>The launcher prepares the Python environment and opens your local page. If it does not open automatically, use the address printed in the launcher terminal. The port can change, so use that address rather than a bookmarked port.</p>
+        <ol class="guide-steps"><li><strong>Open Model setup.</strong><span>The app checks its local files and shows what is ready or missing. It does not download model weights during a swap.</span></li><li><strong>Review the model licenses.</strong><span>Read the terms linked in the panel, then check “I have reviewed the model licenses and agree to their permitted use.” Model weights have separate terms, including research and non-commercial restrictions.</span></li><li><strong>Choose Install required models.</strong><span>This installs the missing buffalo_l analysis pack and InSwapper 128 weights for the default workflow. Existing local assets are preserved. Keep the page open and follow the Model setup report.</span></li><li><strong>Wait for required models ready.</strong><span>Readiness updates after installation and the swap button becomes available. Optional parsing, restoration, and occlusion models have a separate checkbox; you can leave it off for a first swap.</span></li></ol>
+      </section>
+      <section class="guide-section" aria-labelledby="first-swap-title"><p class="eyebrow">02 / REFERENCE + TARGET → RESULT</p><h2 id="first-swap-title">Give each image its job.</h2><ol class="guide-steps"><li><strong>Choose your scene: the target.</strong><span>Add the photo you want to edit. This supplies the scene, pose, and surrounding image. You can add several targets to process a batch with the same references.</span></li><li><strong>Add a reference: the identity.</strong><span>Use a clear, well-lit face photo. Additional references are optional; use photos of the same person. The app supports up to four reference images.</span></li><li><strong>Start with the default model.</strong><span>Keep InSwapper 128 for your first test. Manual quality runs the selected resolution once; Best likeness compares candidates and takes longer. With several faces, choose the target index in Fine-tune: faces are numbered from 0, left to right.</span></li><li><strong>Run identity swap and review.</strong><span>Completed results appear in the gallery with a report for each target. Download the PNG from the gallery or find the automatically saved image in the project’s outputs/ folder. A failed target is reported while the rest of the batch continues.</span></li></ol><p class="guide-caption">The likeness score compares identity embeddings. Use it to compare results; assess the actual image for blending, expression, and detail. Only edit images you own or have permission to use.</p></section>
+      <section class="guide-section" aria-labelledby="essential-title"><p class="eyebrow">03 / WHAT THE MODELS DO</p><h2 id="essential-title">Required first. Optional after.</h2><div class="guide-table-wrap"><table><thead><tr><th>Model</th><th>Role in the workflow</th><th>Needed for a first swap?</th></tr></thead><tbody><tr><th scope="row">buffalo_l</th><td>Face detection, landmarks, attributes, and identity embeddings. The complete analysis pack has five ONNX files.</td><td>Yes, for the default workflow.</td></tr><tr><th scope="row">InSwapper 128</th><td>The default face-swap model. Supports larger aligned crops through Pixel Boost.</td><td>Yes, when selected.</td></tr><tr><th scope="row">BiSeNet</th><td>Face parsing for more specific feature masks and corrections.</td><td>Optional.</td></tr><tr><th scope="row">XSeg</th><td>Occlusion masks to help preserve objects in front of the face.</td><td>Optional.</td></tr><tr><th scope="row">CodeFormer</th><td>Guarded face restoration. The pipeline checks reference similarity before accepting the restored face.</td><td>Optional.</td></tr></tbody></table></div><p class="guide-caption">Choosing a different swap model can require additional weights or a separate runtime. The core installer prepares the default InSwapper workflow, not every model in the menu.</p></section>
+      <section class="guide-section" aria-labelledby="troubleshooting-title"><p class="eyebrow">04 / WHEN SOMETHING NEEDS ATTENTION</p><h2 id="troubleshooting-title">A clearer next step.</h2><div class="guide-troubleshooting"><article><h3>The page does not open.</h3><p>Keep the launcher terminal open and check its last message. Open the exact local address it prints on the same computer. If setup stopped with a dependency error, fix that error before trying the browser again.</p></article><article><h3>Installation stops or models stay missing.</h3><p>Read the Model setup report. Check your connection and available disk space, then retry; existing files are preserved. Confirm InSwapper 128 is selected for the core installer. Other models can need different files or approved upstream access.</p></article><article><h3>The first swap is slow on CPU.</h3><p>Use Manual quality and native InSwapper 128 for a first test. Best likeness compares multiple candidates; high Pixel Boost settings and restoration add work. The first run also loads models into memory.</p></article><article><h3>No face is found, or the wrong face changes.</h3><p>Use a sharper image with a larger, unobstructed face. Check the target and reference face indexes in Fine-tune: numbering starts at 0, left to right. For a small face, review Minimum face size rather than increasing Pixel Boost.</p></article><article><h3>Python dependencies fail to install.</h3><p>Use Python 3.11 or 3.12. InsightFace may need a C++ compiler: Visual Studio Build Tools on Windows, development headers and build-essential on Ubuntu, or Xcode command line tools on macOS. Keep the terminal error for diagnosis.</p></article><article><h3>The result needs a better finish.</h3><p>Try a clearer reference of the same identity first. Then compare mouth handling, color matching, and a modest boost. Optional parsing, occlusion, and restoration models address different parts of the finish; a larger resolution alone does not guarantee a better result.</p></article></div></section>
+      <section class="guide-section" aria-labelledby="boost-title"><p class="eyebrow">05 / DETAIL AND PROCESSING COST</p><h2 id="boost-title">Pixel Boost changes the face crop.</h2><p>The resolution is the aligned face crop processed by a supported model, not the dimensions of the whole output image. InSwapper 128 uses these tile counts:</p><div class="guide-table-wrap"><table><thead><tr><th>Aligned crop</th><th>Tile passes</th><th>When to try it</th></tr></thead><tbody><tr><th scope="row">128px</th><td>1</td><td>Native model size; a useful first test.</td></tr><tr><th scope="row">256px</th><td>4</td><td>A modest step up in detail.</td></tr><tr><th scope="row">512px</th><td>16</td><td>More processing for a larger aligned crop.</td></tr><tr><th scope="row">1024 / 2048px</th><td>64 / 256</td><td>Expensive on CPU. Reserve for intentional comparisons.</td></tr></tbody></table></div><p class="guide-caption">An explicit boost choice takes precedence over automatic candidate comparison. Unsupported boosts are not silently replaced with ordinary image resizing.</p></section>
+      <section class="guide-section" aria-labelledby="advanced-title"><p class="eyebrow">06 / ADVANCED SETUP</p><h2 id="advanced-title">Prefer the terminal?</h2><p>The in-app installer is the straightforward first-run route. These commands remain available for local checks and explicit downloads from the extracted Visenlo folder.</p><details class="advanced-setup"><summary>Show terminal model commands</summary><div class="guide-commands"><div class="tab-list" role="tablist" aria-label="Model setup platform"><button class="tab active" role="tab" type="button" id="windows-tab" aria-controls="windows-panel" aria-selected="true" data-panel="windows-panel">Windows</button><button class="tab" role="tab" type="button" id="linux-tab" aria-controls="linux-panel" aria-selected="false" tabindex="-1" data-panel="linux-panel">Linux</button><button class="tab" role="tab" type="button" id="mac-tab" aria-controls="mac-panel" aria-selected="false" tabindex="-1" data-panel="mac-panel">macOS</button></div>
+<div class="install-panel active" id="windows-panel" role="tabpanel" aria-labelledby="windows-tab" tabindex="0"><p><span class="instruction-number">1</span> Check local files without network access:</p><div class="code-block"><span class="code-label">LOCAL CHECK</span><pre><code>py scripts/download_models.py --check</code></pre><button class="copy" type="button" data-copy="py scripts/download_models.py --check" aria-label="Copy windows model check command">Copy</button></div><p><span class="instruction-number">2</span> After reviewing upstream licenses, explicitly download missing core models:</p><div class="code-block"><span class="code-label">EXPLICIT DOWNLOAD</span><pre><code>py scripts/download_models.py --download</code></pre><button class="copy" type="button" data-copy="py scripts/download_models.py --download" aria-label="Copy windows model download command">Copy</button></div><p class="platform-note">Add <code>--all</code> to the download command to include optional finishing models. Then re-check models in the app.</p></div><div class="install-panel" id="linux-panel" role="tabpanel" aria-labelledby="linux-tab" tabindex="0" hidden><p><span class="instruction-number">1</span> Check local files without network access:</p><div class="code-block"><span class="code-label">LOCAL CHECK</span><pre><code>python3 scripts/download_models.py --check</code></pre><button class="copy" type="button" data-copy="python3 scripts/download_models.py --check" aria-label="Copy linux model check command">Copy</button></div><p><span class="instruction-number">2</span> After reviewing upstream licenses, explicitly download missing core models:</p><div class="code-block"><span class="code-label">EXPLICIT DOWNLOAD</span><pre><code>python3 scripts/download_models.py --download</code></pre><button class="copy" type="button" data-copy="python3 scripts/download_models.py --download" aria-label="Copy linux model download command">Copy</button></div><p class="platform-note">Add <code>--all</code> to the download command to include optional finishing models. Then re-check models in the app.</p></div><div class="install-panel" id="mac-panel" role="tabpanel" aria-labelledby="mac-tab" tabindex="0" hidden><p><span class="instruction-number">1</span> Check local files without network access:</p><div class="code-block"><span class="code-label">LOCAL CHECK</span><pre><code>python3 scripts/download_models.py --check</code></pre><button class="copy" type="button" data-copy="python3 scripts/download_models.py --check" aria-label="Copy mac model check command">Copy</button></div><p><span class="instruction-number">2</span> After reviewing upstream licenses, explicitly download missing core models:</p><div class="code-block"><span class="code-label">EXPLICIT DOWNLOAD</span><pre><code>python3 scripts/download_models.py --download</code></pre><button class="copy" type="button" data-copy="python3 scripts/download_models.py --download" aria-label="Copy mac model download command">Copy</button></div><p class="platform-note">Add <code>--all</code> to the download command to include optional finishing models. Then re-check models in the app.</p></div></div></details><p>Alternative model families include ReSwapper, GHOST, HyperSwap, SimSwap, and UniFace. Some require identity conversion weights. MobileFaceSwap and FaceDancer require separate runtimes; FaceDancer remains experimental with real generator inference unverified.</p><p>Open <code>docs/SWAP_MODELS.md</code> in the downloaded project for the inventory, upstream sources, and model-specific setup. Being listed in the menu does not mean a model is installed.</p><a class="button primary" href="index.html#install">Get Visenlo <span aria-hidden="true">↗</span></a></section>
+    </main>
+    <footer class="shell"><div class="footer-main"><a class="brand" href="#top"><img src="assets/mark.svg" width="28" height="28" alt="" />visenlo</a><p>Local software.<br>Room to experiment.</p><nav aria-label="Footer navigation"><a href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener noreferrer">Source ↗</a><a href="https://github.com/Mevinb/Visenlo#readme" target="_blank" rel="noopener noreferrer">Documentation ↗</a><a href="index.html#install">Install</a><a href="index.html#faq">Questions</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> Visenlo. Built to run locally.</span><span>Use images you own or have permission to edit.</span><a href="#top">Back to top ↑</a></div></footer>
+    <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+  </body>
+</html>

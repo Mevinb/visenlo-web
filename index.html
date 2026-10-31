@@ -3,634 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visenlo | Open-Source Local AI Face Swap</title>
-    <meta name="description" content="Visenlo is an open-source face-swapping application that runs locally on your PC. No cloud processing, with GPU acceleration, multiple models, and high-resolution face swapping." />
-    <meta name="keywords" content="Visenlo, open source face swap, local face swap, AI face swap locally, offline face swap, face swap for PC, face swap Linux, local AI face swap, open source face swap software, GPU face swap, face swap without uploading photos, Visenlo face swap, Visenlo GitHub, Visenlo Linux, Visenlo installation" />
+    <title>Visenlo | Local AI Face Swap for Windows &amp; Linux</title>
+    <meta name="description" content="Run AI face swaps locally on Windows or Linux with Visenlo. Use up to four references, process batches, and work offline after installing the required models." />
     <meta name="author" content="Visenlo" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#0c0d0c" />
+    <meta name="theme-color" content="#10130f" />
     <meta name="google-site-verification" content="0732bed172a36bf8" />
-    <link rel="canonical" href="https://visenlo-web.vercel.app/" />
+    <link rel="canonical" href="https://reactor-web-seven.vercel.app/" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Visenlo" />
-    <meta property="og:title" content="Visenlo | Open-Source Local AI Face Swap" />
-    <meta property="og:description" content="Visenlo is an open-source face-swapping application that runs locally on your PC. No cloud processing, with GPU acceleration, multiple models, and high-resolution face swapping." />
-    <meta property="og:url" content="https://visenlo-web.vercel.app/" />
-    <meta property="og:image" content="https://visenlo-web.vercel.app/og-image.png" />
-    <meta property="og:image:alt" content="Visenlo - Local AI face swap running on your device" />
+    <meta property="og:title" content="Visenlo | Local AI Face Swap for Windows &amp; Linux" />
+    <meta property="og:description" content="Run AI face swaps locally on Windows or Linux with Visenlo. Use up to four references, process batches, and work offline after installing the required models." />
+    <meta property="og:url" content="https://reactor-web-seven.vercel.app/" />
+    <meta property="og:image" content="https://reactor-web-seven.vercel.app/assets/social-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Visenlo local studio with a face-landmark workflow illustration" />
     <meta property="og:locale" content="en_US" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Visenlo | Open-Source Local AI Face Swap" />
-    <meta name="twitter:description" content="Open-source face swap that runs locally. No cloud, no uploads. GPU acceleration, offline, for PC and Linux." />
-    <meta name="twitter:image" content="https://visenlo-web.vercel.app/og-image.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <style>
-      :root { --ink:#0c0d0c; --paper:#f2f3ee; --lime:#b9ff66; --muted:#a7aca4; --line:rgba(242,243,238,.18); --panel:#171917; --mono:"DM Mono",monospace; --body:"DM Sans",sans-serif; --display:"Space Grotesk",sans-serif; }
-      * { box-sizing:border-box; }
-      html { scroll-behavior:smooth; }
-      body { margin:0; background:var(--ink); color:var(--paper); font-family:var(--body); overflow-x:hidden; }
-      a { color:inherit; text-decoration:none; }
-      button { font:inherit; }
-      .shell { width:min(1180px, calc(100% - 48px)); margin:auto; }
-      .eyebrow { color:var(--lime); font:500 11px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
-      .site-header { height:78px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(12,13,12,.92); backdrop-filter:blur(8px); z-index:10; }
-      .brand { font:600 21px/1 var(--display); letter-spacing:-.06em; }
-      nav { display:flex; gap:18px; color:#c5c9c3; font-size:12.5px; align-items:center; }
-      nav a:hover { color:var(--lime); }
-      nav .nav-github { padding:8px 12px; border:1px solid var(--line); border-radius:3px; }
-      nav .nav-github:hover { border-color:var(--lime); }
-      .hero { min-height:680px; position:relative; padding:92px 0 72px; display:grid; grid-template-columns:1.02fr .98fr; gap:50px; align-items:center; }
-      .hero-copy { position:relative; z-index:1; }
-      h1 { max-width:650px; margin:16px 0 22px; font:600 clamp(52px, 6.2vw, 85px)/.93 var(--display); letter-spacing:-.072em; }
-      h1 em { color:var(--lime); font-style:normal; }
-      .lede { max-width:520px; color:#bcc1ba; font-size:18px; line-height:1.52; }
-      .cta-row { display:flex; flex-wrap:wrap; gap:11px; margin:31px 0 18px; }
-      .button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:0 18px; border:1px solid transparent; border-radius:3px; cursor:pointer; font-size:14px; font-weight:600; transition:transform .18s, background .18s; }
-      .button:hover { transform:translateY(-2px); }
-      .button.primary { color:#13150f; background:var(--lime); }
-      .button.ghost { color:var(--paper); border-color:var(--line); }
-      .arrow { font-family:var(--mono); font-size:17px; }
-      .hero-meta { max-width:520px; margin-top:14px; color:#8d9689; font:12px/1.6 var(--mono); }
-      .hero-meta a { color:var(--lime); text-decoration:underline; text-underline-offset:3px; }
-      .trust { display:flex; flex-wrap:wrap; gap:20px; color:#d2d6cf; font:12px var(--mono); margin-top:28px; }
-      .trust span:before { content:"✓"; margin-right:7px; color:var(--lime); }
-      .machine { position:relative; width:min(100%, 475px); margin-left:auto; }
-      .machine:before { content:""; position:absolute; width:370px; height:370px; background:var(--lime); filter:blur(105px); opacity:.09; right:-75px; top:20px; }
-      .browser-card { position:relative; border:1px solid rgba(185,255,102,.7); background:#101210; box-shadow:14px 14px 0 #242824; }
-      .bar { display:flex; align-items:center; height:35px; padding:0 12px; border-bottom:1px solid #343a33; color:#858d82; font:10px var(--mono); }
-      .dots { display:flex; gap:5px; margin-right:13px; } .dots i { width:6px; height:6px; border-radius:50%; background:#5a6157; }
-      .web-body { padding:27px 29px 31px; }
-      .web-label { font:10px var(--mono); color:#7d8579; } .mini-line { height:9px; margin-top:14px; width:76%; background:#e4e6e0; } .mini-line.thin { height:5px; width:55%; background:#737c70; margin-top:9px; } .mini-button { width:123px; height:25px; margin-top:20px; background:var(--lime); }
-      .handoff { height:40px; margin-left:35px; border-left:1px dashed #7a8277; position:relative; } .handoff:after { content:"↓ DOWNLOAD"; position:absolute; top:14px; left:-28px; color:var(--lime); font:9px var(--mono); white-space:nowrap; }
-      .local-card { position:relative; margin-left:35px; padding:17px 20px 20px; border:1px solid #4c534a; background:#171a17; box-shadow:10px 10px 0 #242824; } .local-top { display:flex; justify-content:space-between; color:#bfc5b9; font:11px var(--mono); } .status { color:var(--lime); } .terminal { margin-top:17px; padding:16px; background:#0b0c0b; color:#b7c0b2; font:11px/1.9 var(--mono); } .terminal strong { color:var(--lime); font-weight:400; } .terminal .fade { color:#697267; }
-      .section { padding:96px 0; border-top:1px solid var(--line); }
-      .section-head { display:grid; grid-template-columns:220px 1fr; gap:30px; margin-bottom:48px; }
-      h2 { margin:0; max-width:650px; font:600 clamp(34px,4vw,48px)/.98 var(--display); letter-spacing:-.065em; } .section-note { margin:16px 0 0; max-width:560px; color:var(--muted); line-height:1.6; font-size:15px; }
-      .section-note strong { color:var(--paper); font-weight:600; }
-      .how-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); }
-      .step { min-height:330px; padding:25px; border-right:1px solid var(--line); position:relative; } .step:last-child { border:0; } .step-num { color:var(--lime); font:11px var(--mono); } .step h3 { margin:62px 0 10px; font:600 22px var(--display); letter-spacing:-.05em; } .step p { max-width:260px; color:#aeb4ab; font-size:14px; line-height:1.55; }
-      .step-art { position:absolute; bottom:25px; left:25px; right:25px; font:11px var(--mono); color:#80887d; } .file { padding:10px 11px; border:1px solid #454c43; background:#151715; } .progress { margin-top:9px; height:6px; background:#2b302a; } .progress b { display:block; height:100%; width:73%; background:var(--lime); } .localhost { color:var(--lime); border:1px solid var(--lime); padding:10px; text-align:center; }
-      /* Features */
-      .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-      .feature-card { padding:26px; border:1px solid var(--line); background:#131413; }
-      .feature-card h3 { margin:10px 0 10px; font:600 18px var(--display); letter-spacing:-.03em; }
-      .feature-card p { margin:0; color:#aeb4ab; font-size:13.5px; line-height:1.6; }
-      .feature-icon { width:32px; height:32px; display:grid; place-items:center; background:var(--lime); color:#0c0d0c; font:12px var(--mono); border-radius:2px; }
-      /* Models */
-      .models-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:16px; }
-      .model-card { padding:28px; border:1px solid var(--line); background:var(--panel); }
-      .model-card h3 { margin:0 0 10px; font:500 20px var(--display); }
-      .model-card p, .model-card li { color:#aab1a7; font-size:13.5px; line-height:1.6; }
-      .model-card ul { padding-left:18px; margin:12px 0 0; }
-      .model-card li { margin:6px 0; }
-      .model-highlight { background:#b9ff66; color:#0c0d0c; }
-      .model-highlight h3, .model-highlight p, .model-highlight li { color:#0c0d0c; }
-      .model-highlight li { color:#1a2a0a; }
-      /* Guides */
-      .guides-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-      .guide-card { padding:22px; border:1px solid var(--line); background:#131413; display:flex; flex-direction:column; gap:10px; }
-      .guide-card h3 { margin:0; font:600 15px var(--display); line-height:1.3; letter-spacing:-.02em; }
-      .guide-card p { margin:0; color:#aeb4ab; font-size:13px; line-height:1.55; flex:1; }
-      .guide-card a { color:var(--lime); font:11px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
-      .guide-card a:hover { text-decoration:underline; }
-      .pill { display:inline-block; padding:4px 8px; background:#1e201e; border:1px solid var(--line); color:#8d9689; font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; width:fit-content; }
-      /* Docs */
-      .docs-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-      .docs-card { padding:26px; border:1px solid var(--line); background:#131413; }
-      .docs-card h3 { margin:12px 0 8px; font:600 18px var(--display); }
-      .docs-card p { color:#aeb4ab; font-size:13.5px; line-height:1.6; margin:0 0 14px; }
-      .docs-links { display:flex; flex-wrap:wrap; gap:10px; }
-      .docs-links a { padding:8px 10px; border:1px solid #3a4138; background:#0b0c0b; color:#c8d0c3; font:11px var(--mono); }
-      .docs-links a:hover { border-color:var(--lime); color:var(--lime); }
-      .install-layout { display:grid; grid-template-columns:220px 1fr; gap:30px; } .tab-list { display:flex; flex-direction:column; align-items:stretch; gap:8px; } .tab { padding:14px 15px; background:transparent; color:#959c93; border:1px solid transparent; cursor:pointer; text-align:left; font:14px var(--body); } .tab.active { color:var(--paper); border-color:#50584d; background:#171a17; } .tab small { display:block; margin-top:4px; color:#6d756b; font:10px var(--mono); }
-      .install-panel { display:none; padding:28px; border:1px solid #50584d; background:var(--panel); } .install-panel.active { display:block; } .install-panel h3 { margin:0; font:500 24px var(--display); letter-spacing:-.05em; } .install-panel > p { color:var(--muted); font-size:14px; } .code { position:relative; margin-top:23px; padding:22px 70px 22px 22px; overflow:auto; background:#090a09; border-left:2px solid var(--lime); color:#c8d0c3; white-space:pre; font:13px/1.7 var(--mono); } .code .prompt { color:var(--lime); } .copy { position:absolute; top:11px; right:11px; padding:7px 9px; border:1px solid #424a40; color:#dce1d8; background:#161a15; cursor:pointer; font:10px var(--mono); } .copy:hover { border-color:var(--lime); color:var(--lime); } .copy.copied { color:#152013; background:var(--lime); }
-      .install-footer { margin-top:20px; color:#8d9689; font:12px/1.6 var(--mono); } .install-footer a { color:var(--lime); text-decoration:underline; text-underline-offset:3px; }
-      .requirements { background:#e7e9e2; color:#11130f; } .requirements .section-note { color:#53584f; } .req-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; } .req-card { padding:30px; border:1px solid #c7ccc2; } .req-card.recommended { background:var(--ink); color:var(--paper); border-color:var(--ink); } .req-card h3 { margin:0 0 25px; font:500 26px var(--display); letter-spacing:-.055em; } .req-card h3 b { color:#5f8f28; font:10px var(--mono); letter-spacing:.08em; vertical-align:middle; } .recommended h3 b { color:var(--lime); } .spec { display:flex; justify-content:space-between; gap:15px; padding:14px 0; border-top:1px solid rgba(32,37,29,.17); font-size:14px; } .recommended .spec { border-color:#363b35; } .spec span:first-child { color:#687063; } .recommended .spec span:first-child { color:#959d92; } .spec strong { text-align:right; font:500 13px var(--mono); } .cpu-note { grid-column:1/-1; padding:16px 0 0; color:#5e655b; font-size:13px; }
-      .faq-wrap { max-width:780px; margin-left:auto; } .faq { border-top:1px solid var(--line); } .faq:last-child { border-bottom:1px solid var(--line); } details { padding:0; } summary { display:flex; justify-content:space-between; align-items:center; gap:25px; padding:22px 0; cursor:pointer; list-style:none; font:500 16px var(--display); letter-spacing:-.02em; } summary::-webkit-details-marker { display:none; } summary:after { content:"+"; color:var(--lime); font:21px var(--mono); } details[open] summary:after { content:"−"; } details p { max-width:640px; margin:0 0 22px; color:#aab1a7; font-size:14px; line-height:1.65; } details code { color:var(--lime); font:12px var(--mono); }
-      footer { padding:36px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:1fr auto; gap:24px; color:#899087; font:11px var(--mono); }
-      .footer-links { display:flex; flex-wrap:wrap; gap:18px; }
-      .footer-links a:hover { color:var(--lime); }
-      .footer-bottom { grid-column:1/-1; padding-top:18px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-      @media (max-width:900px) { nav{gap:12px; font-size:11.5px} .features-grid,.guides-grid{grid-template-columns:1fr 1fr} .models-grid,.docs-grid{grid-template-columns:1fr} }
-      @media (max-width:760px) { .shell{width:min(100% - 32px,1180px)} nav{display:none}.hero{grid-template-columns:1fr;padding:56px 0 60px;gap:42px;min-height:0}.machine{margin:0;width:92%}h1{font-size:50px}.section{padding:64px 0}.section-head{grid-template-columns:1fr;gap:18px}.how-grid,.req-grid,.features-grid,.guides-grid{grid-template-columns:1fr}.step{min-height:230px;border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.tab-list{flex-direction:row;overflow:auto}.tab{white-space:nowrap}.install-panel{padding:20px}.req-card{padding:23px}.cpu-note{grid-column:auto}.faq-wrap{margin:0}.trust{gap:12px}.site-header{height:65px}footer{grid-template-columns:1fr;}.footer-bottom{flex-direction:column}}
-      @media (prefers-reduced-motion:reduce) { *,html{scroll-behavior:auto;transition:none!important} }
-    </style>
-    <!-- Structured Data -->
+    <meta name="twitter:title" content="Visenlo | Local AI Face Swap for Windows &amp; Linux" />
+    <meta name="twitter:description" content="Run AI face swaps locally on Windows or Linux with Visenlo. Use up to four references, process batches, and work offline after installing the required models." />
+    <meta name="twitter:image" content="https://reactor-web-seven.vercel.app/assets/social-card.png" />
+    <meta name="twitter:image:alt" content="Visenlo local face-swap studio workflow illustration" />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/space-grotesk.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="site.js" defer></script>
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://visenlo-web.vercel.app/#website",
-          "url": "https://visenlo-web.vercel.app/",
-          "name": "Visenlo",
-          "description": "Visenlo is an open-source face-swapping application that runs locally on your PC. No cloud processing, with GPU acceleration, multiple models, and high-resolution face swapping.",
-          "publisher": { "@id": "https://visenlo-web.vercel.app/#organization" },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://visenlo-web.vercel.app/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          },
-          "inLanguage": "en-US"
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://visenlo-web.vercel.app/#organization",
-          "name": "Visenlo",
-          "url": "https://visenlo-web.vercel.app/",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://visenlo-web.vercel.app/og-image.png"
-          },
-          "sameAs": [
-            "https://github.com/Mevinb/Visenlo",
-            "https://github.com/Mevinb/visenlo-web"
-          ]
-        },
-        {
-          "@type": "SoftwareApplication",
-          "@id": "https://visenlo-web.vercel.app/#software",
-          "name": "Visenlo",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "Windows, macOS, Linux",
-          "description": "Open-source local AI face swap software that runs entirely on your PC. Offline face swapping with GPU acceleration, ONNX Runtime, and high-resolution models. No uploads, no cloud.",
-          "url": "https://visenlo-web.vercel.app/",
-          "downloadUrl": "https://github.com/Mevinb/Visenlo/archive/refs/heads/main.zip",
-          "installUrl": "https://github.com/Mevinb/Visenlo",
-          "codeRepository": "https://github.com/Mevinb/Visenlo",
-          "programmingLanguage": "Python",
-          "license": "https://github.com/Mevinb/Visenlo/blob/main/LICENSE",
-          "releaseNotes": "https://github.com/Mevinb/Visenlo/releases",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-          "keywords": "Visenlo, open source face swap, local face swap, offline face swap, face swap for PC, face swap Linux, GPU face swap, ONNX face swap",
-          "featureList": "Local face swapping, offline AI face swap, GPU acceleration, ONNX Runtime, high-resolution face swap, face swap without uploading photos"
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://visenlo-web.vercel.app/#top" },
-            { "@type": "ListItem", "position": 2, "name": "Features", "item": "https://visenlo-web.vercel.app/#features" },
-            { "@type": "ListItem", "position": 3, "name": "How It Works", "item": "https://visenlo-web.vercel.app/#how" },
-            { "@type": "ListItem", "position": 4, "name": "Installation", "item": "https://visenlo-web.vercel.app/#install" },
-            { "@type": "ListItem", "position": 5, "name": "Models", "item": "https://visenlo-web.vercel.app/#models" },
-            { "@type": "ListItem", "position": 6, "name": "Documentation", "item": "https://visenlo-web.vercel.app/#docs" },
-            { "@type": "ListItem", "position": 7, "name": "System Requirements", "item": "https://visenlo-web.vercel.app/#requirements" }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Do images leave my device?",
-              "acceptedAnswer": { "@type": "Answer", "text": "No. Visenlo performs AI processing locally on your computer. This website does not receive your images. It is an offline face swap solution." }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I use Visenlo offline?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Yes. After installation, Visenlo runs completely offline on your PC. No internet is needed for face swapping." }
-            },
-            {
-              "@type": "Question",
-              "name": "Does Visenlo work on Linux?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Visenlo supports Linux, Windows and macOS. There are specific guides for Ubuntu and other distributions." }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need a GPU?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Visenlo can run on CPU fallback, but a NVIDIA GPU with CUDA 12+ and 6GB+ VRAM is strongly recommended for high-resolution face swapping." }
-            },
-            {
-              "@type": "Question",
-              "name": "How is Visenlo different from cloud face swap services?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Visenlo is open source and runs locally, so you never upload photos to a server. It uses local models with ONNX Runtime and GPU acceleration." }
-            }
-          ]
-        }
+      "@type": "Organization",
+      "@id": "https://reactor-web-seven.vercel.app/#project",
+      "name": "Visenlo",
+      "url": "https://reactor-web-seven.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://reactor-web-seven.vercel.app/assets/mark.svg"
+      },
+      "sameAs": [
+        "https://github.com/Mevinb/Visenlo"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://reactor-web-seven.vercel.app/#website",
+      "url": "https://reactor-web-seven.vercel.app/",
+      "name": "Visenlo",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://reactor-web-seven.vercel.app/#project"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://reactor-web-seven.vercel.app/#social-image",
+      "url": "https://reactor-web-seven.vercel.app/assets/social-card.png",
+      "width": 1200,
+      "height": 630,
+      "caption": "Visenlo local face-swap studio workflow illustration"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://reactor-web-seven.vercel.app/#webpage",
+      "url": "https://reactor-web-seven.vercel.app/",
+      "name": "Visenlo | Local AI Face Swap for Windows & Linux",
+      "description": "Run AI face swaps locally on Windows or Linux with Visenlo. Use up to four references, process batches, and work offline after installing the required models.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://reactor-web-seven.vercel.app/#website"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://reactor-web-seven.vercel.app/#social-image"
+      },
+      "mainEntity": {
+        "@id": "https://reactor-web-seven.vercel.app/#software"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://reactor-web-seven.vercel.app/#software",
+      "name": "Visenlo",
+      "url": "https://reactor-web-seven.vercel.app/",
+      "description": "A local AI face-swap application with up to four reference images, batch processing, and offline use after model setup.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Windows, Linux, macOS",
+      "runtimePlatform": "Python 3.11 or 3.12",
+      "softwareRequirements": "Required model weights and a compatible ONNX Runtime installation. macOS uses CPU processing. GPU acceleration requires a supported NVIDIA and CUDA setup.",
+      "downloadUrl": "https://reactor-web-seven.vercel.app/downloads/Visenlo.zip",
+      "installUrl": "https://reactor-web-seven.vercel.app/#install",
+      "image": "https://reactor-web-seven.vercel.app/assets/social-card.png",
+      "publisher": {
+        "@id": "https://reactor-web-seven.vercel.app/#project"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "url": "https://reactor-web-seven.vercel.app/#install"
+      },
+      "featureList": [
+        "Local image processing",
+        "Offline use after dependencies and models are installed",
+        "Up to four identity reference images",
+        "Batch face swaps",
+        "Pixel Boost for supported models",
+        "Optional restoration and occlusion masking"
       ]
     }
+  ]
+}
     </script>
   </head>
-  <body>
-    <header class="shell site-header">
-      <a class="brand" href="#top" aria-label="Visenlo Home">Visenlo</a>
-      <nav aria-label="Primary navigation">
-        <a href="#features">Features</a>
-        <a href="#how">How It Works</a>
-        <a href="#install">Installation</a>
-        <a href="#models">Models</a>
-        <a href="#docs">Docs</a>
-        <a href="#requirements">Requirements</a>
-        <a href="#faq">FAQ</a>
-        <a class="nav-github" href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener">GitHub</a>
-        <a class="nav-github" href="https://github.com/Mevinb/Visenlo/releases" target="_blank" rel="noopener">Releases</a>
-      </nav>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="#top" aria-label="Visenlo home"><img src="assets/mark.svg" width="30" height="30" alt="" />visenlo</a>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu <span aria-hidden="true">+</span></button>
+        <nav id="site-nav" aria-label="Main navigation">
+          <a href="#how">The workflow</a><a href="#features">Features</a><a href="#models">Models</a><a href="#faq">Questions</a>
+          <a class="nav-source" href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="nav-download" href="#install">Get Visenlo <span aria-hidden="true">↓</span></a>
+        </nav>
+      </div>
     </header>
-    <main id="top">
-      <!-- HERO -->
-      <section class="shell hero" aria-labelledby="hero-title">
+    <main id="main">
+      <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <div class="eyebrow">Open-source · Local · Private</div>
-          <h1 id="hero-title">Visenlo: <em>open-source</em> local AI face swap for your PC.</h1>
-          <p class="lede"><strong>Visenlo is an open-source face-swapping application that runs locally on your PC.</strong> No cloud processing, no uploads. With GPU acceleration, multiple models, ONNX Runtime, and high-resolution face swapping — offline, on Windows, macOS and Linux.</p>
-          <div class="cta-row">
-            <a id="primary-download" class="button primary" href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.sh" download>Download for Mac / Linux <span class="arrow">↘</span></a>
-            <a class="button ghost" href="#install">See all install options</a>
-            <a class="button ghost" href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-          <p class="hero-meta">Free and open source face swap software. <a href="https://github.com/Mevinb/Visenlo">Visenlo on GitHub</a> · <a href="https://github.com/Mevinb/Visenlo/releases">Releases</a> · Works offline after install. No account.</p>
-          <div class="trust"><span>No data leaves device</span><span>Offline after install</span><span>GPU accelerated</span></div>
+          <p class="eyebrow"><span class="status-dot"></span> FACE SWAPPING, ON YOUR TERMS</p>
+          <h1 id="hero-title">A new face.<br>The same scene.<br><em>All yours.</em></h1>
+          <p class="hero-lede">Visenlo is a local AI face-swap app for Windows and Linux, with a CPU setup for macOS. Bring the identity from a reference photo into a target scene. Your images stay on your computer.</p>
+          <div class="hero-actions"><a class="button primary" href="#install">Make it yours <span aria-hidden="true">↗</span></a><a class="text-link" href="#how">See how it works <span aria-hidden="true">↘</span></a></div>
+          <div class="hero-meta"><span>Windows · Linux · macOS*</span><span>Free source download. No account or generation credits.</span></div>
         </div>
-        <div class="machine" aria-label="Diagram showing the website transfers Visenlo to the user's computer">
-          <div class="browser-card" role="img" aria-label="Visenlo website hands off to local PC"><div class="bar"><span class="dots"><i></i><i></i><i></i></span>visenlo.local/download</div><div class="web-body"><span class="web-label">VISENLO WEBSITE</span><div class="mini-line"></div><div class="mini-line thin"></div><div class="mini-button"></div></div></div>
-          <div class="handoff"></div>
-          <div class="local-card"><div class="local-top"><span>YOUR COMPUTER</span><span class="status">● RUNNING LOCALLY</span></div><div class="terminal" aria-label="Terminal shows local run"><span class="fade">~/Visenlo</span> <strong>$</strong> ./run.sh<br><strong>✓</strong> Local AI ready<br><span class="fade">→</span> http://<strong>127.0.0.1:7860</strong></div></div>
+        <div class="studio-art" aria-label="Illustration of the Visenlo face-swap workflow">
+          <div class="art-top"><span><span class="tiny-mark">V</span> VISENLO / STUDIO</span><span class="local-status"><span class="status-dot"></span> LOCAL FIRST</span></div>
+          <div class="art-canvas"><img class="face-study" src="assets/face-study.svg" fetchpriority="high" decoding="async" alt="Original illustration of a face with a geometric landmark mesh" width="600" height="680" /><span class="canvas-label">FACE STUDY / 001</span><span class="canvas-coordinates">SOURCE → TARGET<br>LOCAL WORKSPACE</span><div class="canvas-tool"><span aria-hidden="true">⌘</span> Your images. Your hardware.</div></div>
+          <div class="reference-card"><div class="reference-avatar" aria-hidden="true"><svg viewBox="0 0 100 100"><path fill="#c9d2b8" d="M0 0h100v100H0z"/><path fill="#4b5840" d="M12 100c2-26 17-35 38-35s36 9 38 35"/><path fill="#929f7f" d="M40 55h20v24H40z"/><ellipse fill="#e8eada" cx="50" cy="38" rx="21" ry="27"/><path fill="#4b5840" d="M29 35c-8-33 44-44 43 3L61 18 36 25z"/></svg></div><div><span class="eyebrow">YOUR REFERENCE</span><strong>The identity you choose.</strong><span>Up to four reference images</span></div><span class="reference-arrow" aria-hidden="true">↗</span></div>
+          <div class="art-bottom"><span>WORKFLOW ILLUSTRATION</span><span>NOT A GENERATED RESULT</span></div>
         </div>
       </section>
-
-      <!-- FEATURES -->
-      <section class="section" id="features" aria-labelledby="features-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">Features</div>
-            <div>
-              <h2 id="features-title">The local AI face swap that doesn’t ask for your photos.</h2>
-              <p class="section-note"><strong>Visenlo is built for local face swap</strong> — open source face swap software that runs AI face swap locally on your hardware. Face swap for PC and face swap Linux without uploading images to any server. <strong>Open source face swap, offline face swap, GPU face swap.</strong></p>
-            </div>
-          </div>
-          <div class="features-grid">
-            <article class="feature-card">
-              <div class="feature-icon">◈</div>
-              <h3>Open source face swap</h3>
-              <p>Fully open source face swap software. Audit the code on <a href="https://github.com/Mevinb/Visenlo" style="color:var(--lime);text-decoration:underline">Visenlo GitHub</a>, self-host, and modify. No hidden cloud calls.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">⬢</div>
-              <h3>Local & offline face swap</h3>
-              <p>AI face swap locally and offline. After initial download, Visenlo runs completely offline on your PC. Your images never leave your device — face swap without uploading photos.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">⚡</div>
-              <h3>GPU face swap acceleration</h3>
-              <p>GPU face swap with NVIDIA CUDA 12+ and ONNX Runtime. High-resolution face swapping in seconds. CPU fallback supported where available, but GPU is the local AI sweet spot.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">▣</div>
-              <h3>Face swap for PC &amp; face swap Linux</h3>
-              <p>Runs on Windows, macOS and Linux. Native face swap Linux support including Ubuntu. Same local app, every route — Git, ZIP, or one-liner.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">◎</div>
-              <h3>High-resolution, multiple models</h3>
-              <p>Multiple models with ONNX Runtime backend. High-resolution face swapping with configurable models — choose quality vs. speed for your hardware.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">⬔</div>
-              <h3>Private by design</h3>
-              <p>Local AI face swap = private AI face swap. No account, no dashboard, no telemetry. Outputs saved locally to <code style="color:var(--lime)">outputs/date_00.png</code> on your machine.</p>
-            </article>
-          </div>
-          <p class="cpu-note" style="margin-top:18px">Long-tail ready: <em>"open source face swap that runs locally"</em> · <em>"offline AI face swap for Linux"</em> · <em>"face swap without uploading images"</em> — those are Visenlo’s actual advantages.</p>
+      <div class="proof-strip shell" aria-label="Product highlights"><span><i aria-hidden="true">↳</i> Processing stays on your device</span><span><i aria-hidden="true">◎</i> Works offline after setup</span><span><i aria-hidden="true">▧</i> One image or a whole batch</span><span><i aria-hidden="true">↗</i> Source on GitHub</span></div>
+      <section class="section shell" id="how" aria-labelledby="how-title">
+        <div class="section-heading"><p class="eyebrow">01 / THE WORKFLOW</p><div><h2 id="how-title">One identity.<br>A scene worth keeping.</h2><p>The reference supplies the face identity. The target supplies the image you want to edit. Visenlo brings them together in a local workspace.</p></div></div>
+        <div class="workflow-grid">
+          <article class="workflow-step"><span class="step-number">01</span><div class="step-art art-input" aria-hidden="true"><span class="file-tile">↗<small>REFERENCE</small></span><span class="file-tile target-tile">▧<small>TARGET</small></span></div><h3>Your reference + scene.</h3><p>Add one or many target images, then a clear reference face. You can add up to four photos of the same person to help identity matching.</p></article>
+          <article class="workflow-step"><span class="step-number">02</span><div class="step-art art-controls" aria-hidden="true"><span>Identity <i><b></b></i></span><span>Detail <i><b></b></i></span><span>Finish <i><b></b></i></span></div><h3>Choose the face.</h3><p>Keep the default model for a first swap. For group photos, choose the target face: faces are numbered from 0, left to right.</p></article>
+          <article class="workflow-step"><span class="step-number">03</span><div class="step-art art-export" aria-hidden="true"><span>↙</span><div>YOUR NEXT IMAGE<small>Saved to outputs/</small></div></div><h3>Run, review, save.</h3><p>Run identity swap. Each completed target appears in the gallery with a processing report and an automatically saved PNG in outputs/.</p></article>
+        </div>
+        <div class="product-tour" id="studio" aria-labelledby="studio-title">
+          <div class="tour-heading"><div><p class="eyebrow">INSIDE THE ACTUAL APP</p><h3 id="studio-title">A workspace for your images.</h3></div><p>The website gets you started. This is the studio you run on your own computer.</p></div>
+          <figure class="workspace-figure"><div class="workspace-chrome"><span><i></i><i></i><i></i></span><span>VISENLO / YOUR LOCAL WORKSPACE</span><span>DESKTOP VIEW</span></div><a class="workspace-image-link" href="assets/studio-workspace.png" target="_blank" rel="noopener noreferrer" aria-label="View the actual Visenlo workspace screenshot at full size"><img src="assets/studio-workspace-1000.webp" srcset="assets/studio-workspace-640.webp 640w, assets/studio-workspace-1000.webp 1000w, assets/studio-workspace-1600.webp 1600w, assets/studio-workspace-2000.webp 2000w" sizes="(max-width: 620px) calc(100vw - 62px), (max-width: 850px) calc(100vw - 94px), (max-width: 1100px) calc(100vw - 116px), (max-width: 1392px) calc(100vw - 158px), 1234px" width="2000" height="1042" loading="lazy" decoding="async" alt="Actual empty Visenlo desktop workspace: target image uploads on the left and reference face upload on the right, with additional references collapsed" /></a><figcaption><span>Actual application interface.</span> Empty workspace shown; no sample swap or generated result. <a href="assets/studio-workspace.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption></figure>
+          <div class="tour-notes"><div><span>01 / THE TARGET</span><p>Your scene, pose, and surrounding image. Add more targets to process a batch with the same identity and settings.</p></div><div><span>02 / THE REFERENCE</span><p>The face identity to bring into the scene. Use clear photos of the same person when adding extra references.</p></div><div><span>03 / THE FINISH</span><p>Best likeness compares candidates. Fine-tune mouth handling, color, sharpening, and optional restoration when needed.</p></div></div>
         </div>
       </section>
-
-      <!-- HOW IT WORKS -->
-      <section class="section" id="how" aria-labelledby="how-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">01 / How it works</div>
-            <div>
-              <h2 id="how-title">From the internet to your machine. Then the internet stops mattering.</h2>
-              <p class="section-note">How local AI face swapping works: <strong>Visenlo is an application you install once</strong>. It opens on your own computer and processes images there — not in a browser tab and not on our servers. That’s how you get <strong>offline face swap</strong> and <strong>face swap without uploading photos</strong>.</p>
-            </div>
-          </div>
-          <div class="how-grid">
-            <article class="step">
-              <div class="step-num">01</div>
-              <h3>Download</h3>
-              <p>Get Visenlo — open source face swap that runs locally — from this site or the <a href="https://github.com/Mevinb/Visenlo" style="color:var(--lime);text-decoration:underline">Visenlo GitHub</a> repository.</p>
-              <div class="step-art"><div class="file">↓ Visenlo-main.zip</div></div>
-            </article>
-            <article class="step">
-              <div class="step-num">02</div>
-              <h3>Install once</h3>
-              <p>The installer prepares Python, dependencies, ONNX Runtime, models, and configuration for your OS — Windows, macOS or Linux.</p>
-              <div class="step-art"><div class="file">Preparing local environment</div><div class="progress"><b></b></div></div>
-            </article>
-            <article class="step">
-              <div class="step-num">03</div>
-              <h3>Run locally</h3>
-              <p>Launch the app. Your own hardware runs the AI — GPU face swap when available, CPU fallback otherwise — even offline at <code style="color:var(--lime)">127.0.0.1:7860</code>.</p>
-              <div class="step-art"><div class="localhost">127.0.0.1:7860</div></div>
-            </article>
-          </div>
-        </div>
+      <section class="section features-section" id="features" aria-labelledby="features-title"><div class="shell feature-layout">
+        <div class="feature-intro"><p class="eyebrow">02 / CREATIVE CONTROL</p><h2 id="features-title">Your image.<br>Your finishing<br>touch.</h2><p>Start with the default model and one reference. Open Fine-tune when you want control over face selection, mouth handling, blending, and restoration.</p><a class="text-link" href="https://github.com/Mevinb/Visenlo#readme" target="_blank" rel="noopener noreferrer">Explore the documentation <span aria-hidden="true">↗</span></a></div>
+        <div class="feature-list"><article><span class="feature-no">01</span><div><h3>Give the identity more context.</h3><p>Use up to four reference photos of the same person. The engine checks their quality and combines accepted identities for embedding-based models; image-based models use the best accepted reference.</p></div><span class="feature-symbol" aria-hidden="true">◎</span></article><article><span class="feature-no">02</span><div><h3>Take the detail up a level.</h3><p>Pixel Boost processes larger aligned face crops with supported models. Pick the resolution yourself, or let Best likeness compare candidates.</p></div><span class="feature-symbol" aria-hidden="true">⊞</span></article><article><span class="feature-no">03</span><div><h3>Keep the scene in the picture.</h3><p>Face-region blending and optional parsing and occlusion models help protect hair, foreground objects, and the surrounding image.</p></div><span class="feature-symbol" aria-hidden="true">◫</span></article><article><span class="feature-no">04</span><div><h3>Work through the whole batch.</h3><p>Apply the same references and settings to multiple targets. Results appear as they finish. A failed image gets its own report, while the remaining targets continue processing.</p></div><span class="feature-symbol" aria-hidden="true">▤</span></article></div>
+      </div></section>
+      <section class="section shell" id="models" aria-labelledby="models-title"><div class="section-heading"><p class="eyebrow">03 / UNDER THE HOOD</p><div><h2 id="models-title">Pick the engine.<br>Keep the control.</h2><p>Visenlo connects local models in one workflow. Availability depends on the weights and runtime you install.</p></div></div>
+        <div class="model-layout"><div class="model-primary"><span class="eyebrow">THE STARTING POINT</span><h3>InSwapper.</h3><p>The default 128px model supports Pixel Boost for larger aligned crops. Best likeness compares finished candidates against your reference; a similarity score is a guide, not a guarantee.</p><div class="resolution-list"><span>128</span><span>256</span><span>512</span><span>1024</span><span>2048<small>px</small></span></div><span class="model-footnote">Higher boost means more processing, especially on CPU.</span></div><div class="model-secondary"><article><span class="eyebrow">MORE WAYS TO EXPERIMENT</span><h3>One studio. Different models.</h3><p>Choose from model families including ReSwapper, GHOST, HyperSwap, SimSwap, and UniFace. Some adapters are experimental and may require a separate runtime.</p><a class="text-link" href="model-guide.html" >Model compatibility notes <span aria-hidden="true">↗</span></a></article><article class="model-note"><span aria-hidden="true">↳</span><p><strong>Model weights are separate.</strong> Review the model terms in the app, then install the required weights from Model setup. Optional parsing, restoration, and occlusion models have their own opt-in.</p></article></div></div>
       </section>
-
-      <!-- INSTALL -->
-      <section class="section" id="install" aria-labelledby="install-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">02 / Install</div>
-            <div>
-              <h2 id="install-title">Visenlo installation — choose your route.</h2>
-              <p class="section-note">Every route installs the same local app: <strong>AI face swap locally</strong>. No accounts, no dashboard, no data sent to this website. For <strong>Visenlo Linux</strong>, <strong>Visenlo installation</strong> on Ubuntu, and <strong>GPU face swap</strong> setups see the guides below. <a href="#requirements" style="color:var(--lime);text-decoration:underline">System requirements</a> · <a href="https://github.com/Mevinb/Visenlo/releases" style="color:var(--lime);text-decoration:underline">Releases</a></p>
-            </div>
-          </div>
-          <div class="install-layout">
-            <div class="tab-list" role="tablist" aria-label="Installation methods">
-              <button class="tab active" role="tab" aria-selected="true" aria-controls="git-panel" id="git-tab" data-panel="git-panel">Git<small>For technical users</small></button>
-              <button class="tab" role="tab" aria-selected="false" aria-controls="zip-panel" id="zip-tab" data-panel="zip-panel">ZIP<small>Download & extract</small></button>
-              <button class="tab" role="tab" aria-selected="false" aria-controls="one-panel" id="one-tab" data-panel="one-panel">One-liner<small>Fastest setup</small></button>
-            </div>
-            <div>
-              <div class="install-panel active" id="git-panel" role="tabpanel" aria-labelledby="git-tab">
-                <h3>Install Visenlo with Git — open source face swap</h3>
-                <p>Clone the project, then let the local installer handle the setup. Best for developers and face swap Linux users.</p>
-                <pre class="code"><code><span class="prompt">$</span> git clone https://github.com/Mevinb/Visenlo.git
-<span class="prompt">$</span> cd Visenlo
-<span class="prompt">$</span> ./install.sh</code><button class="copy" data-copy="git clone https://github.com/Mevinb/Visenlo.git
-cd Visenlo
-./install.sh">Copy</button></pre>
-                <div class="install-footer">Prefer a visual download? <a href="https://github.com/Mevinb/Visenlo/archive/refs/heads/main.zip">Get the ZIP archive</a>. Also on <a href="https://github.com/Mevinb/Visenlo">Visenlo GitHub</a>.</div>
-              </div>
-              <div class="install-panel" id="zip-panel" role="tabpanel" aria-labelledby="zip-tab">
-                <h3>Install Visenlo from a ZIP — offline face swap</h3>
-                <p>Download the archive, extract it, then run the installer inside the folder. Ideal for offline face swap and face swap for PC without Git.</p>
-                <pre class="code"><code><span class="prompt">Windows &gt;</span> install.bat
-<span class="prompt">macOS/Linux $</span> ./install.sh</code><button class="copy" data-copy="Windows: install.bat
-macOS/Linux: ./install.sh">Copy</button></pre>
-                <div class="install-footer"><a href="https://github.com/Mevinb/Visenlo/archive/refs/heads/main.zip">Download Visenlo-main.zip</a> and extract it anywhere you have space. See <a href="https://github.com/Mevinb/Visenlo/releases">Releases</a> for versions.</div>
-              </div>
-              <div class="install-panel" id="one-panel" role="tabpanel" aria-labelledby="one-tab">
-                <h3>One command, local install — AI face swap locally</h3>
-                <p>For people who prefer the shortest path to local AI face swap. Review the script before running it. Works for face swap Linux and macOS.</p>
-                <pre class="code"><code><span class="prompt">macOS/Linux $</span> curl -fsSL https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.sh | bash
-<span class="prompt">PowerShell &gt;</span> irm https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.ps1 | iex</code><button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.sh | bash
-irm https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.ps1 | iex">Copy</button></pre>
-                <div class="install-footer">Scripts are public and configurable. <a href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.sh">View install.sh</a> · <a href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.ps1">View install.ps1</a> · <a href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.bat">View install.bat</a> · <a href="https://github.com/Mevinb/Visenlo">Visenlo GitHub</a></div>
-              </div>
-            </div>
-          </div>
+      <section class="section install-section" id="install" aria-labelledby="install-title"><div class="shell"><div class="section-heading"><p class="eyebrow">04 / MAKE IT LOCAL</p><div><h2 id="install-title">A studio on<br>your own machine.</h2><p>Download. Extract. Start the launcher. It opens your local studio, where you install the models and make your first swap. Setup needs internet; processing stays on your device.</p></div></div>
+        <div class="install-layout"><div class="download-block"><span class="download-icon" aria-hidden="true">↓</span><h3>Get Visenlo.</h3><p>A free source ZIP, not a standalone executable. Install Python first; the launcher prepares its environment. Add model weights from inside the app.</p><a id="primary-download" class="button primary" href="downloads/Visenlo.zip" download>Download source ZIP <span aria-hidden="true">↙</span></a><a class="text-link" href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener noreferrer">View project on GitHub <span aria-hidden="true">↗</span></a></div>
+        <div class="setup-block"><div class="tab-list" role="tablist" aria-label="Installation platform"><button class="tab active" role="tab" type="button" id="windows-tab" aria-controls="windows-panel" aria-selected="true" data-panel="windows-panel">Windows</button><button class="tab" role="tab" type="button" id="linux-tab" aria-controls="linux-panel" aria-selected="false" tabindex="-1" data-panel="linux-panel">Linux</button><button class="tab" role="tab" type="button" id="mac-tab" aria-controls="mac-panel" aria-selected="false" tabindex="-1" data-panel="mac-panel">macOS</button></div>
+        <div class="install-panel active" id="windows-panel" role="tabpanel" aria-labelledby="windows-tab" tabindex="0">
+          <p><span class="instruction-number">1</span> Install <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">Python 3.11 or 3.12 ↗</a> and select “Add Python to PATH.”</p>
+          <p><span class="instruction-number">2</span> Extract the ZIP, then open the inner <code>Visenlo</code> folder containing <code>run.bat</code> and <code>app.py</code>.</p>
+          <p><span class="instruction-number">3</span> Open a terminal in that folder and start the launcher:</p>
+          <div class="code-block"><span class="code-label">POWERSHELL</span><pre><code>.\run.bat</code></pre><button class="copy" type="button" data-copy=".\run.bat" aria-label="Copy Windows launch command">Copy</button></div>
+          <p><span class="instruction-number">4</span> The studio opens in your browser. In <strong>Model setup</strong>, review the licenses, check the acknowledgment, and select <strong>Install required models</strong>.</p>
+          <p class="platform-note">You can double-click <code>run.bat</code> instead. If InsightFace needs compiling, install Visual Studio Build Tools with C++ support.</p>
         </div>
-      </section>
-
-      <!-- MODELS -->
-      <section class="section" id="models" aria-labelledby="models-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">Models</div>
-            <div>
-              <h2 id="models-title">Multiple models, ONNX Runtime, high-resolution face swapping.</h2>
-              <p class="section-note"><strong>Visenlo models</strong> run locally via ONNX Runtime. Choose models for speed or quality. GPU face swap uses ONNX CUDA execution, CPU fallback uses ONNX CPU. All high-resolution face swapping happens offline on your PC.</p>
-            </div>
-          </div>
-          <div class="models-grid">
-            <article class="model-card">
-              <h3>High-resolution face swapping</h3>
-              <p>Visenlo supports high-resolution face swapping locally. No cloud compression — your GPU does the work. Outputs stay on your machine under <code style="color:var(--lime)">outputs/</code>.</p>
-              <ul>
-                <li>ONNX Runtime backend — CUDA for GPU, CPU fallback</li>
-                <li>Multiple models to balance quality vs. VRAM</li>
-                <li>Face swap without uploading photos — all inference local</li>
-              </ul>
-            </article>
-            <article class="model-card model-highlight">
-              <h3>GPU vs CPU face swapping</h3>
-              <p><strong>GPU face swap</strong> (NVIDIA, CUDA 12+, 6GB+ VRAM) is 10–20× faster than CPU fallback for local AI face swap.</p>
-              <ul>
-                <li>GPU: seconds per high-res face swap</li>
-                <li>CPU: works offline, but significantly slower</li>
-                <li>See <a href="#requirements" style="text-decoration:underline">system requirements</a> to choose</li>
-              </ul>
-            </article>
-          </div>
+        <div class="install-panel" id="linux-panel" role="tabpanel" aria-labelledby="linux-tab" tabindex="0" hidden>
+          <p><span class="instruction-number">1</span> Install Python 3.11 or 3.12, plus your distribution’s venv and development packages.</p>
+          <p><span class="instruction-number">2</span> Extract the ZIP, then open the inner <code>Visenlo</code> folder containing <code>run.sh</code> and <code>app.py</code>.</p>
+          <p><span class="instruction-number">3</span> Open a terminal in that folder and start the launcher:</p>
+          <div class="code-block"><span class="code-label">TERMINAL</span><pre><code>./run.sh</code></pre><button class="copy" type="button" data-copy="./run.sh" aria-label="Copy Linux launch command">Copy</button></div>
+          <p><span class="instruction-number">4</span> The studio opens in your browser. In <strong>Model setup</strong>, review the licenses, check the acknowledgment, and select <strong>Install required models</strong>.</p>
+          <p class="platform-note">If needed, run <code>chmod +x run.sh</code> once. On Ubuntu, setup may need <code>python3-venv</code>, <code>python3-dev</code>, and <code>build-essential</code>.</p>
         </div>
-      </section>
-
-      <!-- DOCUMENTATION -->
-      <section class="section" id="docs" aria-labelledby="docs-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">Documentation</div>
-            <div>
-              <h2 id="docs-title">Visenlo documentation — local AI face swap guides.</h2>
-              <p class="section-note">Everything for <strong>Visenlo installation</strong>, <strong>Visenlo Linux</strong>, and <strong>Visenlo face swap</strong> usage lives on GitHub and in these guides. Search engines and humans both need text — here it is.</p>
-            </div>
-          </div>
-          <div class="docs-grid">
-            <article class="docs-card">
-              <div class="pill">Github</div>
-              <h3>Read the docs on GitHub</h3>
-              <p>Full Visenlo documentation, model notes, and configuration options. This is the source of truth for open source face swap setup.</p>
-              <div class="docs-links">
-                <a href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener">Visenlo GitHub</a>
-                <a href="https://github.com/Mevinb/Visenlo#readme" target="_blank" rel="noopener">README</a>
-                <a href="https://github.com/Mevinb/Visenlo/releases" target="_blank" rel="noopener">Releases</a>
-              </div>
-            </article>
-            <article class="docs-card">
-              <div class="pill">Quick start</div>
-              <h3>Installation &amp; first run</h3>
-              <p>From download to <code style="color:var(--lime)">127.0.0.1:7860</code> in minutes. Covers Git, ZIP, and one-liner routes for every OS.</p>
-              <div class="docs-links">
-                <a href="#install">Installation</a>
-                <a href="#requirements">Requirements</a>
-                <a href="#how">How it works</a>
-              </div>
-            </article>
-          </div>
+        <div class="install-panel" id="mac-panel" role="tabpanel" aria-labelledby="mac-tab" tabindex="0" hidden>
+          <p><span class="instruction-number">1</span> Install Python 3.11 or 3.12 and the Xcode command line tools.</p>
+          <p><span class="instruction-number">2</span> Extract the ZIP, then open the inner <code>Visenlo</code> folder containing <code>run.sh</code> and <code>app.py</code>.</p>
+          <p><span class="instruction-number">3</span> Open a terminal in that folder and start the launcher:</p>
+          <div class="code-block"><span class="code-label">TERMINAL</span><pre><code>./run.sh</code></pre><button class="copy" type="button" data-copy="./run.sh" aria-label="Copy macOS launch command">Copy</button></div>
+          <p><span class="instruction-number">4</span> The studio opens in your browser. In <strong>Model setup</strong>, review the licenses, check the acknowledgment, and select <strong>Install required models</strong>.</p>
+          <p class="platform-note">If needed, run <code>chmod +x run.sh</code> once. *macOS uses CPU processing with a compatible ONNX Runtime installation; it does not use CUDA.</p>
         </div>
-      </section>
-
-      <!-- GUIDES (BLOG) -->
-      <section class="section" id="guides" aria-labelledby="guides-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">Guides · Build authority around Visenlo</div>
-            <div>
-              <h2 id="guides-title">Guides for face swap that runs locally.</h2>
-              <p class="section-note">Target long-tail searches around <strong>local face swap</strong>. Each guide points back to <strong>Visenlo face swap</strong> on GitHub and here — building authority for Visenlo itself as the keyword.</p>
-            </div>
-          </div>
-          <div class="guides-grid">
-            <article class="guide-card">
-              <div class="pill">Linux</div>
-              <h3>How to run face swap locally on Linux</h3>
-              <p>Complete walkthrough for open source face swap that runs locally on Ubuntu and other distros — dependencies, CUDA, and first run.</p>
-              <a href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener">Read on GitHub →</a>
-            </article>
-            <article class="guide-card">
-              <div class="pill">Concepts</div>
-              <h3>How local AI face swapping works</h3>
-              <p>What “local AI” means, how ONNX Runtime does inference on your GPU, and why face swap without uploading photos is faster and private.</p>
-              <a href="#how">How it works →</a>
-            </article>
-            <article class="guide-card">
-              <div class="pill">Performance</div>
-              <h3>GPU vs CPU face swapping</h3>
-              <p>Benchmarks for GPU face swap vs CPU fallback, VRAM needs, and how to choose models for high-resolution face swapping offline.</p>
-              <a href="#models">Models &amp; performance →</a>
-            </article>
-            <article class="guide-card">
-              <div class="pill">Ubuntu</div>
-              <h3>How to install Visenlo on Ubuntu</h3>
-              <p>Step-by-step Visenlo installation on Ubuntu — from <code style="color:var(--lime)">git clone https://github.com/Mevinb/Visenlo.git</code> to <code style="color:var(--lime)">./install.sh</code>.</p>
-              <a href="#install">Installation →</a>
-            </article>
-            <article class="guide-card">
-              <div class="pill">Offline</div>
-              <h3>Running face swap completely offline</h3>
-              <p>Air-gapped face swap for PC: download once, then run Visenlo fully offline. No cloud, no telemetry, outputs stay local.</p>
-              <a href="#faq">FAQ · offline →</a>
-            </article>
-            <article class="guide-card">
-              <div class="pill">ONNX</div>
-              <h3>Face swapping with ONNX Runtime</h3>
-              <p>How Visenlo uses ONNX Runtime for high-resolution, GPU-accelerated face swapping across Windows, Linux and macOS.</p>
-              <a href="#models">Models →</a>
-            </article>
-          </div>
-          <p class="cpu-note" style="margin-top:22px">More: <em>Visenlo face swap</em> · <em>Visenlo GitHub</em> · <em>Visenlo Linux</em> · <em>Visenlo installation</em> — once people search these, you own the keyword.</p>
-        </div>
-      </section>
-
-      <section class="section requirements" id="requirements" aria-labelledby="requirements-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">03 / Hardware</div>
-            <div>
-              <h2 id="requirements-title">System requirements — know your machine.</h2>
-              <p class="section-note"><strong>Visenlo system requirements</strong> for <strong>face swap for PC</strong> and <strong>face swap Linux</strong>. Visenlo can run without a dedicated GPU, but the experience is substantially faster with one. Local AI face swap loves VRAM.</p>
-            </div>
-          </div>
-          <div class="req-grid">
-            <article class="req-card">
-              <h3>Minimum <b>IT RUNS</b></h3>
-              <div class="spec"><span>OS</span><strong>Windows / macOS / Linux</strong></div>
-              <div class="spec"><span>Python</span><strong>3.10+</strong></div>
-              <div class="spec"><span>System RAM</span><strong>8 GB</strong></div>
-              <div class="spec"><span>Free disk</span><strong>4 GB</strong></div>
-              <div class="spec"><span>Processor</span><strong>CPU fallback (ONNX CPU)</strong></div>
-            </article>
-            <article class="req-card recommended">
-              <h3>Recommended <b>FEELS GOOD</b></h3>
-              <div class="spec"><span>GPU</span><strong>NVIDIA (CUDA 12+)</strong></div>
-              <div class="spec"><span>VRAM</span><strong>6 GB+</strong></div>
-              <div class="spec"><span>System RAM</span><strong>16 GB</strong></div>
-              <div class="spec"><span>Backend</span><strong>ONNX Runtime GPU</strong></div>
-              <div class="spec"><span>OS highlight</span><strong>Linux &amp; Windows for GPU</strong></div>
-            </article>
-            <p class="cpu-note">CPU fallback is supported where available via ONNX Runtime, but processing will be significantly slower than GPU face swap. Internet is only needed initially to download the app, dependencies, and models. After that, Visenlo runs as an <strong>offline face swap</strong> app. See <a href="https://github.com/Mevinb/Visenlo" style="color:var(--lime)">Visenlo GitHub</a> for details.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="faq" aria-labelledby="faq-title">
-        <div class="shell">
-          <div class="section-head">
-            <div class="eyebrow">04 / FAQ</div>
-            <div>
-              <h2 id="faq-title">Nothing hidden behind the download.</h2>
-              <p class="section-note">Quick answers for <strong>Visenlo face swap</strong> search intent — privacy, offline use, Linux, and GPU.</p>
-            </div>
-          </div>
-          <div class="faq-wrap">
-            <div class="faq">
-              <details>
-                <summary>Do images leave my device? Face swap without uploading photos?</summary>
-                <p>No. Visenlo is a <strong>local face swap</strong> and <strong>offline face swap</strong> tool. It performs AI processing locally on your computer with ONNX Runtime. This website does not receive your images — that’s the whole point of <strong>face swap without uploading photos</strong>.</p>
-              </details>
-            </div>
-            <div class="faq">
-              <details>
-                <summary>Why don’t you host the AI? What is local AI face swap?</summary>
-                <p>Hosting heavy AI inference needs costly GPU infrastructure and adds privacy tradeoffs. <strong>Local AI face swap</strong> means your GPU does the work. Visenlo is designed to run where your files already live — <strong>AI face swap locally</strong>, even offline.</p>
-              </details>
-            </div>
-            <div class="faq">
-              <details>
-                <summary>Where do outputs go? Is Visenlo high-resolution?</summary>
-                <p>By default, outputs are saved locally to <code>outputs/date_00.png</code> on your PC. Visenlo supports <strong>high-resolution face swapping</strong> with multiple models — choose quality vs. speed.</p>
-              </details>
-            </div>
-            <div class="faq">
-              <details>
-                <summary>Does Visenlo need internet? Can I use it as offline face swap?</summary>
-                <p>Installation needs internet to fetch software, dependencies, and models. Once installed, <strong>Visenlo runs as offline face swap</strong> — fully local, no cloud. See <a href="#guides" style="color:var(--lime)">Running face swap completely offline</a>.</p>
-              </details>
-            </div>
-            <div class="faq">
-              <details>
-                <summary>Can I use Visenlo on Linux or without an NVIDIA GPU? Face swap Linux?</summary>
-                <p>Yes — <strong>face swap Linux</strong> is first-class. Visenlo works on Linux, Windows and macOS. Where supported, CPU fallback via ONNX CPU works, but expect slower processing than a supported NVIDIA GPU setup with CUDA 12+ . See <a href="#guides" style="color:var(--lime)">How to install Visenlo on Ubuntu</a> and <a href="#guides" style="color:var(--lime)">GPU vs CPU face swapping</a>.</p>
-              </details>
-            </div>
-            <div class="faq">
-              <details>
-                <summary>Is Visenlo open source face swap software? Where is Visenlo GitHub?</summary>
-                <p>Yes — <strong>Visenlo is open source face swap software</strong> at <a href="https://github.com/Mevinb/Visenlo" style="color:var(--lime)">github.com/Mevinb/Visenlo</a>. Star the repo, read docs, check <a href="https://github.com/Mevinb/Visenlo/releases" style="color:var(--lime)">Releases</a> for Visenlo installation updates.</p>
-              </details>
-            </div>
-            <div class="faq">
-              <details>
-                <summary>What about Visenlo vs other face swap tools? Why local?</summary>
-                <p>Unlike cloud face swaps, <strong>Visenlo local AI face swap</strong> gives you privacy (no uploads), no per-generation cost, offline use, and full control over models. That’s <em>“open source face swap that runs locally”</em> vs. absurdly broad “face swap” competition.</p>
-              </details>
-            </div>
-          </div>
-        </div>
-      </section>
+        <div class="setup-guide-link"><a href="model-guide.html">First swap, model setup, and troubleshooting <span aria-hidden="true">↗</span></a><span>Python 3.11–3.12 recommended for dependency compatibility.</span></div><div class="setup-footer"><span class="status-dot"></span><span>Once models are ready, add a target and a reference, then run your first swap.<small>Keep the launcher terminal open while using Visenlo. If the browser does not open, use the local address printed in that terminal. The port can change. Start the app on the computer where you want to process your images.</small></span></div></div></div>
+        <div class="requirements" id="requirements"><h3>A quick hardware check.</h3><div><span>CPU</span><p>Supported ONNX Runtime.<br>Expect longer processing times.</p></div><div><span>GPU</span><p>Compatible NVIDIA + CUDA runtime.<br>Availability depends on your setup.</p></div><div><span>MEMORY &amp; DISK</span><p>Plan for 8 GB+ RAM and several GB<br>of free disk for models.</p></div></div>
+      </div></section>
+      <section class="section shell faq-section" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><p class="eyebrow">05 / GOOD TO KNOW</p><h2 id="faq-title">A few things<br>before you start.</h2><p>Have a different question?<br><a class="text-link" href="https://github.com/Mevinb/Visenlo/issues" target="_blank" rel="noopener noreferrer">Ask on GitHub <span aria-hidden="true">↗</span></a></p></div><div class="faq-list"><details><summary>Where do my images go?</summary><p>The installed app processes images on your own computer and saves completed PNGs in its <code>outputs/</code> folder. This promotional website has no image uploader. Keep the app bound to its default loopback address for use on your own machine.</p></details><details><summary>Can I run it without the internet?</summary><p>Yes, after the software, dependencies, and required model weights are installed. Complete model setup while online, then use the local app offline.</p></details><details><summary>Do I need a powerful GPU?</summary><p>A compatible NVIDIA GPU can accelerate inference. CPU processing is also available, but larger boost settings, restoration, and automatic candidate comparisons can take substantially longer. Exact performance depends on your machine and settings.</p></details><details><summary>Are the models included in the download?</summary><p>No. The download contains application source. Start the app, open Model setup, review the model licenses, and choose Install required models. Optional finishing models have a separate checkbox. The setup report shows progress and readiness updates when installation finishes.</p></details><details><summary>Which image is the reference, and which is the target?</summary><p>The reference supplies the face identity. The target is the photo whose scene you want to keep. Add the target under Choose your scene and the identity photo under Add a reference. With several target faces, open Fine-tune to choose the face index, numbered from 0, left to right.</p></details><details><summary>What makes a good reference image?</summary><p>Use a clear, well-lit photo with a visible face. If you add multiple references, use photos of the same person. Strong occlusion, extreme angles, and very small faces can reduce quality. Only edit images you own or have permission to use.</p></details><details><summary>Is this an online face-swap service?</summary><p>No. Visenlo is software you install and run locally. The website introduces the project and links to the source download. You do not upload photos here or buy credits to process images.</p></details></div></section>
+      <section class="closing shell"><p class="eyebrow">THE NEXT IMAGE IS YOURS.</p><div><h2>Keep the creativity.<br><em>Keep the files.</em></h2><a class="button primary" href="#install">Get Visenlo <span aria-hidden="true">↗</span></a></div></section>
     </main>
-    <footer class="shell" aria-label="Footer">
-      <div>
-        <div class="brand" style="margin-bottom:12px">Visenlo</div>
-        <p style="max-width:420px; color:#899087; font-size:12px; line-height:1.6; margin:0">Visenlo is <strong style="color:#b9ff66; font-weight:400">open-source local AI face swap</strong> — open source face swap software that runs AI face swap locally and offline on your PC. GPU accelerated with ONNX Runtime.</p>
-      </div>
-      <div class="footer-links" style="flex-direction:column; gap:14px; align-items:flex-start">
-        <div style="display:flex; flex-wrap:wrap; gap:14px">
-          <a href="#features">Features</a>
-          <a href="#how">How It Works</a>
-          <a href="#install">Installation</a>
-          <a href="#models">Models</a>
-          <a href="#docs">Docs</a>
-          <a href="#requirements">Requirements</a>
-          <a href="#guides">Guides</a>
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:14px">
-          <a href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://github.com/Mevinb/Visenlo/releases" target="_blank" rel="noopener">Releases</a>
-          <a href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.sh">install.sh</a>
-          <a href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.ps1">install.ps1</a>
-          <a href="https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.bat">install.bat</a>
-          <a href="/sitemap.xml">Sitemap</a>
-          <a href="/robots.txt">Robots</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>Visenlo <b>●</b> Local software, not a cloud service. Open-source face swap.</span>
-        <span>127.0.0.1:7860 · offline face swap · Visenlo face swap · Visenlo GitHub · Visenlo Linux</span>
-      </div>
-    </footer>
-    <script>
-      const primary = document.querySelector('#primary-download');
-      const isWindows = /Win/i.test(navigator.userAgent);
-      primary.href = isWindows ? 'https://github.com/Mevinb/Visenlo/archive/refs/heads/main.zip' : 'https://raw.githubusercontent.com/Mevinb/Visenlo/main/install.sh';
-      primary.textContent = isWindows ? 'Download for Windows ' : 'Download for Mac / Linux ';
-      primary.insertAdjacentHTML('beforeend', '<span class="arrow">↘</span>');
-      document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(item => { item.classList.remove('active'); item.setAttribute('aria-selected', 'false'); });
-        document.querySelectorAll('.install-panel').forEach(panel => panel.classList.remove('active'));
-        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true'); document.getElementById(tab.dataset.panel).classList.add('active');
-      }));
-      document.querySelectorAll('.copy').forEach(button => button.addEventListener('click', async () => {
-        try { await navigator.clipboard.writeText(button.dataset.copy); button.textContent = 'Copied'; button.classList.add('copied'); setTimeout(() => { button.textContent = 'Copy'; button.classList.remove('copied'); }, 1600); } catch { button.textContent = 'Select text'; }
-      }));
-    </script>
+    <footer class="shell"><div class="footer-main"><a class="brand" href="#top"><img src="assets/mark.svg" width="28" height="28" alt="" />visenlo</a><p>Local software.<br>Room to experiment.</p><nav aria-label="Footer navigation"><a href="https://github.com/Mevinb/Visenlo" target="_blank" rel="noopener noreferrer">Source ↗</a><a href="https://github.com/Mevinb/Visenlo#readme" target="_blank" rel="noopener noreferrer">Documentation ↗</a><a href="#install">Install</a><a href="#faq">Questions</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> Visenlo. Built to run locally.</span><span>Use images you own or have permission to edit.</span><a href="#top">Back to top ↑</a></div></footer>
+    <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
   </body>
 </html>

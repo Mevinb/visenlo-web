@@ -1,0 +1,9 @@
+# Upload public site files, without local maintenance and repository metadata.
+.git/
+.vercel/
+docs/
+scripts/
+README.md
+__pycache__/
+*.pyc
+.env*
